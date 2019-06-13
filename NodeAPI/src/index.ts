@@ -7,7 +7,7 @@ import * as cors from "cors";
 import routes from "./routes";
 import settings = require("settings-store");
 
-//Connects to the Database -> then starts the express check in for testing
+//Connects to the Database -> then starts the express
 createConnection()
   .then(async connection => {
     settings.init({
