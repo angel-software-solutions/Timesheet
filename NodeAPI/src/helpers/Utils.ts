@@ -10,7 +10,7 @@ export class Utils {
     for (const item of array) {
       let concateProperty = "";
       for (const prop of properties) {
-        //console.log("CONCATE PROP: ", item[prop], " PROP : ", prop);
+        //console.log("CONCATE PROP: ", item[prop], " PROP : ", prop);comment;
         concateProperty = item[prop] + concateProperty;
       }
       // console.log("FINAL CONCATE PROP: ", concateProperty);
