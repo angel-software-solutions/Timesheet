@@ -1,0 +1,23 @@
+{
+  "type": "mssql",
+  "host": "192.168.0.107",
+  "port":11111,
+  "username": "sa",
+  "password": "sa123",
+  "database": "t-SalesDemo",
+  "synchronize": false,
+  "logging": false,
+  "option": [
+    {
+      "useUTC": false
+    }
+  ],
+  "entities": ["build/entity/*.js"],
+  "migrations": ["build/migration/*.js"],
+  "subscribers": ["src/subscriber/**/*.ts"],
+  "cli": {
+    "entitiesDir": "src/entity",
+    "migrationsDir": "src/migration",
+    "subscribersDir": "src/subscriber"
+  }
+}
