@@ -13,6 +13,8 @@ createConnection()
     settings.init({
       appName: "RESTAPI" //required,
     });
+
+    
     // Create a new express application instance
     const app = express();
 
