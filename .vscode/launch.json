@@ -7,11 +7,9 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}\\NodeAPI\\src\\index.ts",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ]
-        }
+            "name": "Debug API",
+            "preLaunchTask": "Compile",
+            "program": "${workspaceFolder}/NodeAPI/build/index.js"
+          },
     ]
 }
