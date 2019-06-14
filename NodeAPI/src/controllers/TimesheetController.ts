@@ -10,6 +10,7 @@ import { TimesheetTemp } from "../entity/TimesheetTemp";
 import { testentity } from "../entity/TestEntity";
 import { Utils } from "../helpers/Utils";
 import { DateUtils } from "../../node_modules/typeorm/util/DateUtils";
+const dateformat = require("dateformat");
 
 class TimesheetController {
   static GetDate = async (req: Request, res: Response) => {
@@ -133,6 +134,13 @@ class TimesheetController {
     // return;
     const timesheetRepository = getRepository(Timesheets);
     try {
+      let isDuplicate = await TimesheetController.isDuplicateTimesheet(
+        timeSheet
+      );
+      if (isDuplicate) {
+        res.status(409).json({ message: "Timesheet already exist." });
+        return;
+      }
       await timesheetRepository.save(timeSheet);
     } catch (e) {
       console.log(e);
@@ -192,6 +200,25 @@ class TimesheetController {
 
     // //After all send a 204 (no content, but accepted) response
     res.status(204).json({ message: "Timesheets deleted successfully" });
+  };
+
+  static isDuplicateTimesheet = async (timeSheet: Timesheets) => {
+    let timesheetrepository = getRepository(Timesheets);
+    let timesheetDate = dateformat(new Date(timeSheet.Date), "yyyy-mm-dd");
+    let query = `select count(*) as Count from timesheets 
+    where FeatureGuid ='${timeSheet.FeatureGuid}'
+    and EmployeeGuid='${timeSheet.EmployeeGuid}'
+    and ProjectRoleGuid='${timeSheet.ProjectRoleGuid}'
+    and  CONVERT(date,date)='${timesheetDate}'`;
+    let result = await timesheetrepository.query(query);
+
+    if (
+      result.length > 0 &&
+      result[0].Count != "undefined" &&
+      result[0].Count > 0
+    )
+      return true;
+    else return false;
   };
 }
 
