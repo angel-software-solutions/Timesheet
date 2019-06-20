@@ -12,8 +12,8 @@
       "useUTC": false
     }
   ],
-  "entities": ["build/entity/*.js"],
-  "migrations": ["build/migration/*.js"],
+  "entities": ["src/entity/*.ts"],
+  "migrations": ["src/migration/*.ts"],
   "subscribers": ["src/subscriber/**/*.ts"],
   "cli": {
     "entitiesDir": "src/entity",
