@@ -6,13 +6,13 @@ import CustomerController from "../controllers/CustomerController";
 const router = Router();
 
 router.get(
-    "/GetAllCustomers",
-    [checkJwt, checkRole(["ADMIN"])],
-    CustomerController.GetAllCustomer
-  );
+  "/",
+  [checkJwt, checkRole(["ADMIN"])],
+  CustomerController.GetAllCustomer
+);
 
-  router.post("/", [checkJwt, checkRole(["ADMIN"])], CustomerController.Insert);
+router.post("/", [checkJwt, checkRole(["ADMIN"])], CustomerController.Insert);
 
-  router.patch("/",[checkJwt, checkRole(["ADMIN"])],CustomerController.Update);
+router.patch("/", [checkJwt, checkRole(["ADMIN"])], CustomerController.Update);
 
 export default router;
