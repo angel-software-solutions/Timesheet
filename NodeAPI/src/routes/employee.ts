@@ -1,14 +1,14 @@
 import { Router } from "express";
 import { checkJwt } from "../middlewares/checkJwt";
 import { checkRole } from "../middlewares/checkRole";
-import CustomerContactController from "../controllers/CustomerContactController";
+import EmployeeController from "../controllers/EmployeeController";
 
 const router = Router();
 
 router.get(
-  "/:customerGuid",
+  "/",
   [checkJwt, checkRole(["ADMIN"])],
-  CustomerContactController.GetCustomerContacts
+  EmployeeController.GetAllEmployees
 );
 
 export default router;
