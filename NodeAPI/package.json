@@ -33,6 +33,7 @@
   },
   "scripts": {
     "tsc": "tsc",
+    "startw": "set debug=* && ts-node-dev --respawn --transpileOnly ./src/index.ts",
     "start": "set debug=* && ts-node-dev --respawn --transpileOnly ./src/index.ts",
     "prod": "tsc && node ./build/index.js",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run"

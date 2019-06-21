@@ -26,6 +26,7 @@ class CustomerController {
       customer.Guid = Guid.create()
         .toString()
         .toUpperCase();
+
       customer.PaymentTerms = "Net 30 Days";
     }
     console.log(customer);
