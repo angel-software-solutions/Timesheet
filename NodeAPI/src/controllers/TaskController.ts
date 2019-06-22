@@ -13,7 +13,6 @@ exports.GetAllTaskByTerm = async (req: Request, res: Response) => {
   featureheadingguid in (select Guid from FeatureHeadings where ProjectGuid = '${projectGuid}') and 
   description like '%${searchTerm}%'
   order by SortOrder`;
-
   console.log(query);
 
   const result = await getConnection().query(query);
