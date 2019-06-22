@@ -110,30 +110,30 @@ class TimesheetController {
   };
 
   static Insert = async (req: Request, res: Response) => {
-    //console.log(req.body);
-    let timeSheet = new Timesheets();
-    Object.assign(timeSheet, req.body);
-
-    if (!(timeSheet.Guid && timeSheet.Guid.length > 0)) {
-      timeSheet.Guid = Guid.create()
-        .toString()
-        .toUpperCase();
-      //timeSheet.Date = new Date(timeSheet.Date.toUTCString());
-      timeSheet.CreatedDate = new Date();
-      timeSheet.IncludeInSR = false;
-      timeSheet.OTMultiplier = 1;
-      timeSheet.DTMultiplier = 1;
-      timeSheet.EmployeeRate = 10;
-      timeSheet.IsApproved = false;
-      //let utcDate = DateUtils.mixedDateToDate(timeSheet.Date.toString(), true);
-      // console.log("UTC DATE: " + typeof utcDate, typeof timeSheet.Date);
-      //timeSheet.Date = utcDate.toString();
-    }
-    console.log("Timesheet Entity: ", timeSheet);
     // res.status(409).json("Error in create timesheet");
     // return;
     const timesheetRepository = getRepository(Timesheets);
     try {
+      let timeSheet = new Timesheets();
+      Object.assign(timeSheet, req.body);
+
+      if (!(timeSheet.Guid && timeSheet.Guid.length > 0)) {
+        timeSheet.Guid = Guid.create()
+          .toString()
+          .toUpperCase();
+        //timeSheet.Date = new Date(timeSheet.Date.toUTCString());
+        timeSheet.CreatedDate = new Date();
+        timeSheet.IncludeInSR = false;
+        timeSheet.OTMultiplier = 1;
+        timeSheet.DTMultiplier = 1;
+        timeSheet.EmployeeRate = 10;
+        timeSheet.IsApproved = false;
+        //let utcDate = DateUtils.mixedDateToDate(timeSheet.Date.toString(), true);
+        // console.log("UTC DATE: " + typeof utcDate, typeof timeSheet.Date);
+        //timeSheet.Date = utcDate.toString();
+      }
+      console.log("Timesheet Entity: ", timeSheet);
+
       let isDuplicate = await TimesheetController.isDuplicateTimesheet(
         timeSheet
       );
@@ -144,7 +144,8 @@ class TimesheetController {
       await timesheetRepository.save(timeSheet);
     } catch (e) {
       console.log(e);
-      res.status(409).json("Error in create timesheet");
+      let msg = { Operation: "Insert", Exception: e };
+      res.status(409).json(msg);
       return;
     }
 
