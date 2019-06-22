@@ -13,3 +13,15 @@ exports.GetAllProjectByTerm = async (req: Request, res: Response) => {
   const result = await getConnection().query(query);
   res.json(result);
 };
+
+exports.GetAllProjectTypes = async (req: Request, res: Response) => {
+  const q = `select * from ProjectTypes order by code`;
+  const pts = await getConnection().query(q);
+  res.json(pts);
+};
+
+exports.GetAllProjectStatuses = async (req: Request, res: Response) => {
+  const q = `select * from Status order by code`;
+  const ps = await getConnection().query(q);
+  res.json(ps);
+};

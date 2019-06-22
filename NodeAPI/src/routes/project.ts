@@ -11,4 +11,16 @@ router.get(
   ProjectController.GetAllProjectByTerm
 );
 
+router.get(
+  "/GetAllProjectTypes",
+  [checkJwt, checkRole(["ADMIN"])],
+  ProjectController.GetAllProjectTypes
+);
+
+router.get(
+  "/GetAllProjectStatuses",
+  [checkJwt, checkRole(["ADMIN"])],
+  ProjectController.GetAllProjectStatuses
+);
+
 export default router;

@@ -7,7 +7,7 @@ const router = Router();
 
 //Get all users
 router.get(
-  "/GetAllEmployee",
+  "/",
   [checkJwt, checkRole(["ADMIN"])],
   EmployeeController.GetEmployees
 );
