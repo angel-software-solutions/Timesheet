@@ -5,10 +5,15 @@ import EmployeeController from "../controllers/EmployeeController";
 
 const router = Router();
 
+//Get all users
 router.get(
-  "/",
+  "/GetAllEmployee",
   [checkJwt, checkRole(["ADMIN"])],
-  EmployeeController.GetAllEmployees
+  EmployeeController.GetEmployees
 );
+
+router.post("/", [checkJwt, checkRole(["ADMIN"])], EmployeeController.Insert);
+
+router.patch("/", [checkJwt, checkRole(["ADMIN"])], EmployeeController.Update);
 
 export default router;

@@ -1,14 +1,14 @@
 import { Router } from "express";
 import { checkJwt } from "../middlewares/checkJwt";
 import { checkRole } from "../middlewares/checkRole";
-const ProjectController = require("../controllers/ProjectController");
+const UserRoleController = require("../controllers/UserRoleController");
 
 const router = Router();
 
 router.get(
-  "/autocomplete",
+  "/",
   [checkJwt, checkRole(["ADMIN"])],
-  ProjectController.GetAllProjectByTerm
+  UserRoleController.GetAllUserRole
 );
 
 export default router;
