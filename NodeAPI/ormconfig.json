@@ -12,9 +12,9 @@
       "useUTC": false
     }
   ],
-  "entities": ["src/entity/*.ts"],
-  "migrations": ["src/migration/*.ts"],
-  "subscribers": ["src/subscriber/**/*.ts"],
+  "entities": ["./entity/**/*.js"],
+  "migrations": ["./migration/**/*.js"],
+  "subscribers": ["./subscriber/**/*.js"],
   "cli": {
     "entitiesDir": "src/entity",
     "migrationsDir": "src/migration",

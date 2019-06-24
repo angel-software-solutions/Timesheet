@@ -10,6 +10,8 @@ import customercontact from "./customercontact";
 import currency from "./currency";
 import industry from "./industry";
 import scope from "./scope";
+import geography from "./geography";
+import projecttag from "./projecttag";
 
 const routes = Router();
 
@@ -24,5 +26,7 @@ routes.use("/api/customer-contact", customercontact);
 routes.use("/api/currency", currency);
 routes.use("/api/scope", scope);
 routes.use("/api/industry", industry);
+routes.use("/api/projecttag", projecttag);
+routes.use("/api/geography", geography);
 
 export default routes;
