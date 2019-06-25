@@ -14,4 +14,8 @@ export class Geographies {
 
   @Column()
   CreatedDate: Date;
+
+  checked: boolean;
+  text: string;
+  value: string;
 }

@@ -11,20 +11,28 @@ class GeographyController {
     list: TS.Collections.List<Geographies>
   ) {
     let children = list.where(x => x.GeographyGuid == parent.Guid).toArray();
-    if (parent.GeographyGuid == null) data["Root"]["Children"] = children;
-
     children.forEach((element, index) => {
-      let childList = list.where(x => x.GeographyGuid == element.Guid).toList();
+      element.text = element.Name;
+      element.value = element.Guid;
+      let childList = list
+        .where(x => x.GeographyGuid == element.Guid)
+        .toList()
+        .forEach(x => {
+          x.text = x.Name;
+          x.value = x.Guid;
+        });
+      if (parent.GeographyGuid == null) data["Root"]["children"] = children;
+
       // if (childList && childList.length > 0) {
       children[index] = element;
-      children[index]["Children"] = childList.toArray();
+      children[index]["children"] = childList.toArray();
       // }
       this.getGeographyTreeList(data, element, list);
     });
   }
 
   static GetAllGeography = async (req: Request, res: Response) => {
-    const query = `select * from Geographies order by Name `;
+    const query = `select *,'true' as 'checked' from Geographies order by Name `;
     const result = await getConnection().query(query);
 
     let geographies = new TS.Collections.List<Geographies>(false, result);
@@ -34,6 +42,8 @@ class GeographyController {
 
     let treeData: any = { Root: "" };
 
+    rootElement.text = rootElement.Name;
+    rootElement.value = rootElement.Guid;
     treeData["Root"] = rootElement;
 
     // let groupedGeographies = geographies

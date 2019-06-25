@@ -6,7 +6,7 @@ import ProjectTagController from "../controllers/ProjectTagController";
 const router = Router();
 
 router.get(
-  "/",
+  "/:projectGuid",
   [checkJwt, checkRole(["ADMIN"])],
   ProjectTagController.GetAllProjectTag
 );
