@@ -19,6 +19,16 @@ class CustomerController {
     res.json(result);
   };
 
+  static GetCustomerByGuid = async (req: Request, res: Response) => {
+    const customerGuid = req.params.customerGuid;
+    console.log(customerGuid);
+    const query = `select * from Customers
+    where Guid='${customerGuid}'     order by ClientName`;
+    const customers = await getConnection().query(query);
+
+    res.json(customers[0]);
+  };
+
   static Insert = async (req: Request, res: Response) => {
     let customer = new Customers();
     Object.assign(customer, req.body);
@@ -53,6 +63,32 @@ class CustomerController {
       return;
     }
     res.status(201).json("Customer updated");
+  };
+
+  static DeleteCustomer = async (req: Request, res: Response) => {
+    //Get the ID from the url
+
+    let ids = req.params.ids;
+    let idsArray = ids.split(",");
+
+    let query = "delete from Customers where guid in (";
+    for (let index = 0; index < idsArray.length; index++) {
+      query += `'${idsArray[index]}',`;
+    }
+    query = query.substring(0, query.length - 1) + ")";
+
+    console.log("delete");
+
+    try {
+      await getConnection().query(query);
+    } catch (error) {
+      res.status(404).send("Exception in delete Customer");
+      return;
+    }
+    // userRepository.delete(id);
+
+    // //After all send a 204 (no content, but accepted) response
+    res.status(201).json({ message: "Customer deleted successfully" });
   };
 }
 export default CustomerController;
