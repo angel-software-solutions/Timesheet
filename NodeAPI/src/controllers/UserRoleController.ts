@@ -1,11 +1,12 @@
-import { getRepository, getConnection } from "typeorm";
+import { getConnection } from "typeorm";
 import { Request, Response } from "express";
-import { User } from "../entity/User";
 
-exports.GetAllUserRole = async (req: Request, res: Response) => {
-  const searchTerm = req.query.search;
-  const query = `select * from UserRoles`;
-  console.log(query);
-  const result = await getConnection().query(query);
-  res.json(result);
-};
+class UserRoleController {
+  static GetAllUserRole = async (req: Request, res: Response) => {
+    const query = `select * from UserRoles order by Name`;
+    console.log(query);
+    const result = await getConnection().query(query);
+    res.json(result);
+  };
+}
+export default UserRoleController;

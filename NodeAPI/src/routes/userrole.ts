@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { checkJwt } from "../middlewares/checkJwt";
 import { checkRole } from "../middlewares/checkRole";
-const UserRoleController = require("../controllers/UserRoleController");
+import UserRoleController from "../controllers/UserRoleController";
 
 const router = Router();
 

@@ -12,6 +12,7 @@ import industry from "./industry";
 import scope from "./scope";
 import geography from "./geography";
 import projecttag from "./projecttag";
+import userrole from "./userrole";
 
 const routes = Router();
 
@@ -28,5 +29,6 @@ routes.use("/api/scope", scope);
 routes.use("/api/industry", industry);
 routes.use("/api/projecttag", projecttag);
 routes.use("/api/geography", geography);
+routes.use("/api/userrole", userrole);
 
 export default routes;
