@@ -12,6 +12,24 @@ router.get(
 );
 
 router.get(
+  "/get-project/:guid",
+  [checkJwt, checkRole(["ADMIN"])],
+  ProjectController.GetProjectByGUID
+);
+
+router.get(
+  "/get-project-expense/:guid",
+  [checkJwt, checkRole(["ADMIN"])],
+  ProjectController.getProjectExpense
+);
+
+router.get(
+  "/get-project-roles/:guid",
+  [checkJwt, checkRole(["ADMIN"])],
+  ProjectController.getProjectRolesByGuid
+);
+
+router.get(
   "/GetAllProjectTypes",
   [checkJwt, checkRole(["ADMIN"])],
   ProjectController.GetAllProjectTypes

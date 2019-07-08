@@ -11,6 +11,16 @@ router.get(
   [checkJwt, checkRole(["ADMIN"])],
   EmployeeController.GetEmployees
 );
+router.get(
+  "/byterm",
+  [checkJwt, checkRole(["ADMIN"])],
+  EmployeeController.getAllEmployeesByTerm
+);
+router.get(
+  "/in-active",
+  [checkJwt, checkRole(["ADMIN"])],
+  EmployeeController.getAllInActiveEmployee
+);
 
 router.post("/", [checkJwt, checkRole(["ADMIN"])], EmployeeController.Insert);
 

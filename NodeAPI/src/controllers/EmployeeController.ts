@@ -14,6 +14,31 @@ class EmployeeController {
   //   let employees = new TS.Collections.List<Employees>(false, result);
   //   res.json(employees);
   // };
+  static getAllEmployeesByTerm = async (
+    request: Request,
+    response: Response
+  ) => {
+    const searchTerm = request.query.search || "";
+    const query = `select E.FirstName                    as firstName,
+       E.LastName                     as lastName,
+       E.Guid                         as guid,
+       E.FirstName + ' ' + E.LastName as fullname,
+       E.EmailAddress                 as email
+from Employees E
+where E.IsActive = 1 and E.FirstName like '%${searchTerm}%' or E.LastName like '%${searchTerm}%'
+order by E.FirstName`;
+
+    response.json(await getConnection().query(query));
+  };
+
+  static getAllInActiveEmployee = async (
+    request: Request,
+    response: Response
+  ) => {
+    response.json(
+      await getConnection().query(`SELECT * from Employees where IsActive = 0`)
+    );
+  };
 
   static GetEmployees = async (req: Request, res: Response) => {
     const query = "select * from Employees";
