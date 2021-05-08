@@ -28,7 +28,7 @@
     "reflect-metadata": "^0.1.10",
     "settings-store": "^1.4.1",
     "ts-node-dev": "^1.0.0-pre.32",
-    "typeorm": "0.2.12",
+    "typeorm": "0.2.25",
     "typescript-linq": "^1.0.6"
   },
   "scripts": {
