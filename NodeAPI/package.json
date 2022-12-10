@@ -19,7 +19,7 @@
     "class-validator": "^0.9.1",
     "dateformat": "^3.0.3",
     "cors": "^2.8.5",
-    "express": "^4.15.4",
+    "express": "^4.17.3",
     "guid-typescript": "^1.0.9",
     "helmet": "^3.15.0",
     "jsonwebtoken": "^8.4.0",
