@@ -22,7 +22,7 @@
     "express": "^4.15.4",
     "guid-typescript": "^1.0.9",
     "helmet": "^3.15.0",
-    "jsonwebtoken": "^8.4.0",
+    "jsonwebtoken": "^9.0.0",
     "md5": "^2.2.1",
     "mssql": "^5.1.0",
     "reflect-metadata": "^0.1.10",
